@@ -122,7 +122,7 @@ int main(int argc, char *argv[])
    args.AddOption(&ode_solver_type, "-s", "--ode-solver",
                   "ODE solver: 1 - Forward Euler,\n\t"
                   "            2 - RK2 SSP, 3 - RK3 SSP, 4 - RK4, 6 - RK6,\n\t"
-                  "            7 - RK2Avg.");
+                  "            7 - RK2Avg, 8 - RK3hc, 9 - RK4hc.");
    args.AddOption(&t_final, "-tf", "--t-final",
                   "Final time; start time is 0.");
    args.AddOption(&cfl, "-cfl", "--cfl", "CFL-condition number.");
@@ -327,6 +327,8 @@ int main(int argc, char *argv[])
       case 4: ode_solver = new RK4Solver; break;
       case 6: ode_solver = new RK6Solver; break;
       case 7: ode_solver = new RK2AvgSolver; break;
+      case 8: ode_solver = new RK3hcAalphaSolver; break;
+      case 9: ode_solver = new RK4hcAalphaSolver; break;
       default:
          if (myid == 0)
          {
@@ -624,7 +626,9 @@ int main(int argc, char *argv[])
       case 3: steps *= 3; break;
       case 4: steps *= 4; break;
       case 6: steps *= 6; break;
-      case 7: steps *= 2;
+      case 7: steps *= 2; break;
+      case 8: steps *= 3; break;
+      case 9: steps *= 4;
    }
    oper.PrintTimingData(mpi.Root(), steps);
 

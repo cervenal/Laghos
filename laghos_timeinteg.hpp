@@ -32,6 +32,9 @@ class HydroODESolver : public ODESolver
 protected:
    LagrangianHydroOperator *hydro_oper;
 
+   void GenericStep(Vector &S, double &t, double &dt,
+                    int stages, const double b[], const double bbar[], const double A[][10]);
+
 public:
    HydroODESolver() : hydro_oper(NULL) { }
 
@@ -45,6 +48,22 @@ class RK2AvgSolver : public HydroODESolver
 {
 public:
    RK2AvgSolver() { }
+
+   virtual void Step(Vector &S, double &t, double &dt);
+};
+
+class RK3hcAalphaSolver : public HydroODESolver
+{
+public:
+   RK3hcAalphaSolver() { }
+
+   virtual void Step(Vector &S, double &t, double &dt);
+};
+
+class RK4hcAalphaSolver : public HydroODESolver
+{
+public:
+   RK4hcAalphaSolver() { }
 
    virtual void Step(Vector &S, double &t, double &dt);
 };
