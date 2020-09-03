@@ -329,6 +329,8 @@ int main(int argc, char *argv[])
       case 7: ode_solver = new RK2AvgSolver; break;
       case 8: ode_solver = new RK3hcAalphaSolver; break;
       case 9: ode_solver = new RK4hcAalphaSolver; break;
+      case 10: ode_solver = new RK3hcAbetaSolver; break;
+      case 11: ode_solver = new RK4hcAbetaSolver; break;
       default:
          if (myid == 0)
          {
@@ -628,7 +630,9 @@ int main(int argc, char *argv[])
       case 6: steps *= 6; break;
       case 7: steps *= 2; break;
       case 8: steps *= 3; break;
-      case 9: steps *= 4;
+      case 9: steps *= 4; break;
+      case 10: steps *= 3; break;
+      case 11: steps *= 4;
    }
    oper.PrintTimingData(mpi.Root(), steps);
 

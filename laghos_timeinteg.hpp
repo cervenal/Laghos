@@ -68,6 +68,22 @@ public:
    virtual void Step(Vector &S, double &t, double &dt);
 };
 
+class RK3hcAbetaSolver : public HydroODESolver
+{
+public:
+   RK3hcAbetaSolver() { }
+
+   virtual void Step(Vector &S, double &t, double &dt);
+};
+
+class RK4hcAbetaSolver : public HydroODESolver
+{
+public:
+   RK4hcAbetaSolver() { }
+
+   virtual void Step(Vector &S, double &t, double &dt);
+};
+
 } // namespace hydrodynamics
 
 } // namespace mfem
